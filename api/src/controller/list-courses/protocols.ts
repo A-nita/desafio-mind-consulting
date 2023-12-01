@@ -1,10 +1,6 @@
 import { Course } from '../../model/course';
 import { HttpResponse } from '../protocols';
 
-export interface IGetCoursesController {
+export interface IListCoursesController {
   handle(): Promise<HttpResponse<Course[]>>;
-}
-
-export interface IGetCoursesRepository {
-  getCourses(): Promise<Course[]>
 }

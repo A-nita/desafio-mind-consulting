@@ -1,8 +1,8 @@
-import { IGetCoursesRepository } from '../../controller/get-course/protocols';
+import { IListCoursesRepository } from '../protocols';
 import { Course } from '../../model/course';
 
-export class PostgresGetCoursesRepository implements IGetCoursesRepository {
-  async getCourses(): Promise<Course[]> {
+export class PostgresListCoursesRepository implements IListCoursesRepository {
+  async listCourses(): Promise<Course[]> {
     return [
       {
         title: 'matematica',
