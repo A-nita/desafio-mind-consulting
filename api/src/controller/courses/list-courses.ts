@@ -6,8 +6,6 @@ export class ListCoursesController implements IListCoursesController {
 
   async handle() {
     try {
-    // Validar requisição
-    // Redirecionar requisiçãoes para o repository
       const courses = await this.getCoursesRepository.listCourses();
       return {
         statusCode: 200,

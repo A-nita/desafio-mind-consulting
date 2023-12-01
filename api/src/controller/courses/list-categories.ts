@@ -6,8 +6,6 @@ export class ListCategoriesController implements IListCategoriesController {
 
   async handle() {
     try {
-    // Validar requisição
-    // Redirecionar requisiçãoes para o repository
       const categories = await this.getCategoriesRepository.listCategories();
       return {
         statusCode: 200,

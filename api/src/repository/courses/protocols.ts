@@ -11,7 +11,7 @@ export interface ICreateCourseRepository {
 }
 
 export interface IEditCourseRepository {
-  editCourse(course: CourseInput): Promise<Course>
+  editCourse(course: Course): Promise<Course>
 }
 
 export interface IListCategoriesRepository {
