@@ -1,5 +1,6 @@
 import { Request } from 'express';
 import { Course } from '../../model/course';
+import { Category } from '../../model/category';
 
 export interface HttpResponse<T> {
   statusCode: number;
@@ -24,4 +25,8 @@ export interface IEditCourseController {
 
 export interface IListCoursesController {
   handle(): Promise<HttpResponse<Course[]>>;
+}
+
+export interface IListCategoriesController {
+  handle(): Promise<HttpResponse<Category[]>>;
 }
