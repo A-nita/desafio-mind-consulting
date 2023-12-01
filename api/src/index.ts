@@ -1,15 +1,19 @@
 import express from 'express';
+
 import { config } from 'dotenv';
+
 import { ListCoursesController } from './controller/courses/list-courses';
 import { CreateCourseController } from './controller/courses/create-course';
 import { EditCourseController } from './controller/courses/edit-course';
 import { ListCategoriesController } from './controller/courses/list-categories';
+import { FindUserController } from './controller/users/find-user';
+import { LoginController } from './controller/auth/login';
+
 import { PostgresListCoursesRepository } from './repository/courses/postgres-list-courses';
 import { PostgresCreateCourseRepository } from './repository/courses/postgres-create-course';
 import { PostgresEditCourseRepository } from './repository/courses/postgres-edit-course';
 import { PostgresListCategoriesRepository } from './repository/courses/postgres-list-categories';
 import { PostgresFindUserRepository } from './repository/users/postgres-find-user';
-import { FindUserController } from './controller/users/find-user';
 
 config();
 
@@ -67,6 +71,16 @@ app.get('/find-user', async (req: express.Request, res: express.Response) => {
   const findUserController = new FindUserController(findUserRepository);
 
   const { body, statusCode } = await findUserController.handle(req);
+
+  res.send(body).status(statusCode);
+});
+
+app.post('/login', async (req: express.Request, res: express.Response) => {
+  const findUserRepository = new PostgresFindUserRepository();
+
+  const loginController = new LoginController(findUserRepository);
+
+  const { body, statusCode } = await loginController.handle(req);
 
   res.send(body).status(statusCode);
 });
