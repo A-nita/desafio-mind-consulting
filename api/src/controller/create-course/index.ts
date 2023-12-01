@@ -1,22 +1,23 @@
-import { ICreateCoursesController } from './protocols';
-import { ICreateCoursesRepository } from '../../repository/protocols';
+import { Request } from 'express';
+import { ICreateCourseController } from './protocols';
+import { ICreateCourseRepository } from '../../repository/protocols';
 
-export class GetCoursesController implements ICreateCoursesController {
-  constructor(private readonly getCoursesRepository : ICreateCoursesRepository) {}
+export class CreateCourseController implements ICreateCourseController {
+  constructor(private readonly createCourseRepository : ICreateCourseRepository) {}
 
-  async handle() {
+  async handle(req: Request) {
     try {
-    // Validar requisição
-    // Redirecionar requisiçãoes para o repository
-      const courses = await this.getCoursesRepository.createCourse();
+      const newCourse = req.body;
+      const course = await this.createCourseRepository.createCourse(newCourse);
+
       return {
         statusCode: 200,
-        body: courses,
+        body: course
       };
     } catch (error) {
       return {
         statusCode: 500,
-        body: 'Something went wrong',
+        body: 'Something went wrong'
       };
     }
   }

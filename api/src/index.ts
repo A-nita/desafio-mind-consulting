@@ -1,7 +1,9 @@
 import express from 'express';
 import { config } from 'dotenv';
 import { ListCoursesController } from './controller/list-courses';
+import { CreateCourseController } from './controller/create-course';
 import { PostgresListCoursesRepository } from './repository/list-courses/postgres-list-courses';
+import { PostgresCreateCourseRepository } from './repository/create-course/postgres-create-course';
 
 config();
 
@@ -21,14 +23,14 @@ app.get('/list-courses', async (req: express.Request, res: express.Response) => 
   res.send(body).status(statusCode);
 });
 
-// app.get('/create-course', async (req: express.Request, res: express.Response) => {
-//   const getCoursesRepository = new PostgresGetCoursesRepository();
+app.get('/create-course', async (req: express.Request, res: express.Response) => {
+  const createCourseRepository = new PostgresCreateCourseRepository();
 
-//   const getCoursesController = new ListCoursesController(getCoursesRepository);
+  const createCourseController = new CreateCourseController(createCourseRepository);
 
-//   const { body, statusCode } = await getCoursesController.handle();
+  const { body, statusCode } = await createCourseController.handle(req);
 
-//   res.send(body).status(statusCode);
-// });
+  res.send(body).status(statusCode);
+});
 
 app.listen(port, () => console.log(`listening on port ${port}!`));
