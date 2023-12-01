@@ -8,6 +8,8 @@ import { PostgresListCoursesRepository } from './repository/courses/postgres-lis
 import { PostgresCreateCourseRepository } from './repository/courses/postgres-create-course';
 import { PostgresEditCourseRepository } from './repository/courses/postgres-edit-course';
 import { PostgresListCategoriesRepository } from './repository/courses/postgres-list-categories';
+import { PostgresFindUserRepository } from './repository/users/postgres-find-user';
+import { FindUserController } from './controller/users/find-user';
 
 config();
 
@@ -55,6 +57,16 @@ app.get('/list-categories', async (req: express.Request, res: express.Response) 
   const getCategoriesController = new ListCategoriesController(listCategoriesRepository);
 
   const { body, statusCode } = await getCategoriesController.handle();
+
+  res.send(body).status(statusCode);
+});
+
+app.get('/find-user', async (req: express.Request, res: express.Response) => {
+  const findUserRepository = new PostgresFindUserRepository();
+
+  const findUserController = new FindUserController(findUserRepository);
+
+  const { body, statusCode } = await findUserController.handle(req);
 
   res.send(body).status(statusCode);
 });
