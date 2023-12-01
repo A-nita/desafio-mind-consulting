@@ -1,10 +1,7 @@
 import { Request } from 'express';
+import { HttpResponse } from '../protocols';
 import { User } from '../../model/user';
 
-export interface HttpResponse<T> {
-    statusCode: number;
-    body: T | string;
-}
 export interface UserInput {
     email: string;
     password: string;

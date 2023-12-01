@@ -1,11 +1,7 @@
 import { Request } from 'express';
+import { HttpResponse } from '../protocols';
 import { Course } from '../../model/course';
 import { Category } from '../../model/category';
-
-export interface HttpResponse<T> {
-  statusCode: number;
-  body: T | string;
-}
 
 export interface CourseInput {
   title: string;
