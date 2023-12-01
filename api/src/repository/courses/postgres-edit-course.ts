@@ -1,14 +1,13 @@
 import { IEditCourseRepository } from './protocols';
-import { CourseInput } from '../../controller/courses/protocols';
 import { Course } from '../../model/course';
 import db from '../../db';
 
 export class PostgresEditCourseRepository implements IEditCourseRepository {
-  async editCourse(course: CourseInput): Promise<Course> {
+  async editCourse(course: Course): Promise<Course> {
 
     const res = await db.query(
-      'INSERT INTO courses (title, description, category_id, professor_id, image) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [course.title, course.description, course.category, course.professor, course.image]
+      'UPDATE courses SET title = ($2), description = ($3), category_id = ($4), professor_id = ($5), image = ($6), active = ($7) WHERE id = ($1)  RETURNING *',
+      [course.id, course.title, course.description, course.category, course.professor, course.image, course.active]
     );
     return res.rows[0];
   }
