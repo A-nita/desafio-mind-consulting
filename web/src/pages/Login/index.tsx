@@ -58,23 +58,29 @@ export default function Login() {
             </div>
           }
 
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            required
-          />
+          <div className="entrada email">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
+              placeholder="Digite seu email"
+            />
+          </div>
 
-          <label htmlFor="password">Senha:</label>
-          <input
-            type="password"
-            id="password"
-            onChange={(e) => setPwd(e.target.value)}
-            value={pwd}
-            required
-          />
+          <div className="entrada password">
+            <label htmlFor="password">Senha:</label>
+            <input
+              type="password"
+              id="password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+              placeholder="Digite sua senha"
+            />
+          </div>
 
           <button type="submit">Entrar</button>        
         </form>
