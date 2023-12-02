@@ -4,7 +4,7 @@ import { User } from '../../model/user';
 
 export interface UserInput {
     email: string;
-    password: string;
+    password?: string;
 }
 
 export interface IFindUserController {

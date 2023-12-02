@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import passport from 'passport';
 
 import { config } from 'dotenv';
 
@@ -16,7 +17,12 @@ import { PostgresEditCourseRepository } from './repository/courses/postgres-edit
 import { PostgresListCategoriesRepository } from './repository/courses/postgres-list-categories';
 import { PostgresFindUserRepository } from './repository/users/postgres-find-user';
 
+import passportConfig from './utils/passport';
+
 config();
+passportConfig();
+
+const jwtPassport = passport.authenticate('jwt', { session: false });
 
 const app = express();
 
@@ -25,8 +31,7 @@ app.use(express.json(), cors());
 const port = process.env.PORT || 8000;
 
 // ROTAS
-// Courses
-app.get('/list-courses', async (req: Request, res: Response) => {
+app.get('/list-courses', jwtPassport, async (req: Request, res: Response) => {
   const listCoursesRepository = new PostgresListCoursesRepository();
 
   const getCoursesController = new ListCoursesController(listCoursesRepository);
@@ -36,7 +41,7 @@ app.get('/list-courses', async (req: Request, res: Response) => {
   res.status(statusCode).send(body);
 });
 
-app.post('/create-course', async (req: Request, res: Response) => {
+app.post('/create-course', jwtPassport, async (req: Request, res: Response) => {
   const createCourseRepository = new PostgresCreateCourseRepository();
 
   const createCourseController = new CreateCourseController(createCourseRepository);
@@ -46,7 +51,7 @@ app.post('/create-course', async (req: Request, res: Response) => {
   res.status(statusCode).send(body);
 });
 
-app.post('/edit-course', async (req: Request, res: Response) => {
+app.post('/edit-course', jwtPassport, async (req: Request, res: Response) => {
   const editCourseRepository = new PostgresEditCourseRepository();
 
   const editCourseController = new EditCourseController(editCourseRepository);
@@ -56,7 +61,7 @@ app.post('/edit-course', async (req: Request, res: Response) => {
   res.status(statusCode).send(body);
 });
 
-app.get('/list-categories', async (req: Request, res: Response) => {
+app.get('/list-categories', jwtPassport, async (req: Request, res: Response) => {
   const listCategoriesRepository = new PostgresListCategoriesRepository();
 
   const getCategoriesController = new ListCategoriesController(listCategoriesRepository);

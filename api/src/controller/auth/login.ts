@@ -1,11 +1,8 @@
 import { Request } from 'express';
 import bcrypt from 'bcrypt';
-import { IFindUserRepository } from '../../repository/users/protocols';
 import { ILoginController, ILoginInput } from './protocols';
-// import { User } from '../../model/user';
-import { PostgresFindUserRepository } from '../../repository/users/postgres-find-user';
-
-const saltRounds = 10;
+import { IFindUserRepository } from '../../repository/users/protocols';
+import { encryptJwt } from '../../utils/crypto';
 
 export class LoginController implements ILoginController {
   constructor(private readonly findUserRepository : IFindUserRepository) {}
@@ -28,40 +25,37 @@ export class LoginController implements ILoginController {
 
       if (!emailValidate(email)) {
         return {
-          statusCode: 500,
-          body: 'E-mail invalid'
+          statusCode: 202,
+          body: 'E-mail inválido'
         };
       }
 
-      // const user = await this.findUserRepository.findUser({ email, password });
+      const user = await this.findUserRepository.findUser({ email });
 
-      // Função de criptografar senha
-      // const encryptedPass = await bcrypt.hash(password, saltRounds);
-      // console.log(encryptedPass);
-
-      // buscar usuário no banco
-      const findUser = new PostgresFindUserRepository();
-      const user = await findUser.findUser({ email, password });
+      if (!user) {
+        return {
+          statusCode: 202,
+          body: 'Usuário não encontrado'
+        };
+      }
 
       const result = await bcrypt.compare(password, user.password);
 
-      // const result = user.password === password;
-
       if (!result) {
         return {
-          statusCode: 500,
-          body: 'Password is incorrect'
+          statusCode: 202,
+          body: 'Senha incorreta'
         };
       }
 
       return {
         statusCode: 200,
-        body: 'generateToken(user)'
+        body: encryptJwt({ email: user.email, admin: user.admin })
       };
     } catch (error) {
       console.log(error);
       return {
-        statusCode: 500,
+        statusCode: 202,
         body: 'Somethings went wrong'
       };
     }
