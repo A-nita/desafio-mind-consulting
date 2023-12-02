@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { useCourseData } from './hooks/use-course-data'
-import { Card } from './components/card/card-course';
-import { Search } from './components/search/search-course';
-import './App.css'
+import { useCourseData } from '../../hooks/use-course-data'
+import { Card } from '../../components/card/card-course';
+import { Search } from '../../components/search/search-course';
 
-function App() {
+export default function Dashboard() {
   const [input, setSearch] = useState('');
   const { data } = useCourseData(input);
 
@@ -31,5 +30,3 @@ function App() {
     </div>
   )
 }
-
-export default App

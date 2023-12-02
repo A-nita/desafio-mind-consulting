@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 
-export default function Root() {
+export default function Login() {
   const API_URL = 'http://localhost:3000';
 
   const [email, setEmail] = useState('');
