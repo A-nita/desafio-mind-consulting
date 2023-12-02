@@ -1,6 +1,6 @@
 .search-container {
   display: flex;
-  max-width: 1000px;
+  width: 60%;
   align-items: center;
   justify-content: space-between;
   margin-top: 2rem;
@@ -11,7 +11,7 @@
 
 .search-container input {
   width: 80%;
-  max-width: 500px;
+  min-width: 200px;
   height: 50px;
   border: 1px solid #ccc;
   border-radius: 15px;

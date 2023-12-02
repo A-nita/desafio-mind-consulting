@@ -17,7 +17,7 @@ export function Card({ title, professor, category, description, image, active }:
       <h3 className="professor-course">{professor}</h3>
       <h3 className="category-course">{category}</h3>
       <p className="description-course">{description}</p>
-      <button className="btn-disable" disabled={!active}>Desativar</button>
+      <button className="btn-disable" disabled={!active}>{ active ? 'Desativar' : 'Ativar' }</button>
       <button className="btn-edit" disabled={!active}>Editar</button>
     </div>
   )
