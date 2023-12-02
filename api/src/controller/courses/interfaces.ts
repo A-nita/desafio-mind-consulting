@@ -20,7 +20,7 @@ export interface IEditCourseController {
 }
 
 export interface IListCoursesController {
-  handle(): Promise<HttpResponse<Course[]>>;
+  handle(req: Request): Promise<HttpResponse<Course[]>>;
 }
 
 export interface IListCategoriesController {

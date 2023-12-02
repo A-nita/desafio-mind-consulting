@@ -2,11 +2,11 @@ import { IListCategoriesController } from './interfaces';
 import { IListCategoriesRepository } from '../../repository/courses/interfaces';
 
 export class ListCategoriesController implements IListCategoriesController {
-  constructor(private readonly getCategoriesRepository : IListCategoriesRepository) {}
+  constructor(private readonly listCategoriesRepository : IListCategoriesRepository) {}
 
   async handle() {
     try {
-      const categories = await this.getCategoriesRepository.listCategories();
+      const categories = await this.listCategoriesRepository.listCategories();
       return {
         statusCode: 200,
         body: categories,

@@ -31,7 +31,7 @@ app.get('/list-courses', async (req: express.Request, res: express.Response) => 
 
   const getCoursesController = new ListCoursesController(listCoursesRepository);
 
-  const { body, statusCode } = await getCoursesController.handle();
+  const { body, statusCode } = await getCoursesController.handle(req);
 
   res.send(body).status(statusCode);
 });

@@ -3,7 +3,7 @@ import { Course } from '../../model/course';
 import { Category } from '../../model/category';
 
 export interface IListCoursesRepository {
-  listCourses(): Promise<Course[]>
+  listCourses(search?: string): Promise<Course[]>
 }
 
 export interface ICreateCourseRepository {
