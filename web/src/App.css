@@ -180,3 +180,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.errmsg {
+  width: 60%;
+  max-width: 500px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  background-color: #f44336;
+  box-shadow: #3801014b 5px 5px 5px ;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
