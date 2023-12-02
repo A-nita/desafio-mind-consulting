@@ -18,13 +18,13 @@ export default function Dashboard() {
       <Search onSearch={handleSearch} />
       <div className="card-courses-grid">
         {data?.map(courseData => <Card
-        key={courseData.id}
-        title={courseData.title}
-        professor={courseData.professor}
-        category={courseData.category}
-        description={courseData.description}
-        image={courseData.image}
-        active={courseData.active}
+          key={courseData.id}
+          title={courseData.title}
+          professor={courseData.professor}
+          category={courseData.category}
+          description={courseData.description}
+          image={courseData.image}
+          active={courseData.active}
         />)}
         {data?.length === 0 && <div  className="notFound">Nenhum curso encontrado</div>}
       </div>

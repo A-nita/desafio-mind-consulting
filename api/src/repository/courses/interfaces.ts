@@ -1,4 +1,4 @@
-import { CourseInput } from '../../controller/courses/interfaces';
+import { ICourseInput } from '../../controller/courses/interfaces';
 import { Course } from '../../model/course';
 import { Category } from '../../model/category';
 
@@ -7,7 +7,7 @@ export interface IListCoursesRepository {
 }
 
 export interface ICreateCourseRepository {
-  createCourse(course: CourseInput): Promise<Course>
+  createCourse(course: ICourseInput): Promise<Course>
 }
 
 export interface IEditCourseRepository {

@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import passport from 'passport';
+import fileUpload from 'express-fileupload';
 
 import { config } from 'dotenv';
 
@@ -20,13 +21,18 @@ import { PostgresFindUserRepository } from './repository/users/postgres-find-use
 import passportConfig from './utils/passport';
 
 config();
-passportConfig();
+passportConfig(new PostgresFindUserRepository());
 
 const jwtPassport = passport.authenticate('jwt', { session: false });
 
 const app = express();
 
-app.use(express.json(), cors());
+app.use(express.json());
+app.use(cors());
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: process.cwd() + '/tmp/'
+}));
 
 const port = process.env.PORT || 8000;
 
