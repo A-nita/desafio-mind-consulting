@@ -1,13 +1,15 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import client from "../../services/api";
 
 export default function Login() {
-  const API_URL = 'http://localhost:3000';
-
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     try {
@@ -18,7 +20,7 @@ export default function Login() {
         password: pwd
       }
     
-      const response = await axios.post(API_URL + '/login', body) as AxiosResponse<string>;
+      const response = await client.post('/login', body) as AxiosResponse<string>;
 
       if (response.status !== 200) {
         setError(true);
@@ -27,7 +29,9 @@ export default function Login() {
         return;
       }
 
-      // Vai para a pagina de cursos
+      localStorage.setItem('token', response.data);
+
+      navigate('/dashboard')
     } catch (error) {
       console.log(error);
       setError(true);

@@ -1,11 +1,10 @@
-import axios, { AxiosPromise } from 'axios'
+import { AxiosPromise } from 'axios'
 import { useQuery } from '@tanstack/react-query'
 import { CourseData } from '../interface/CourseData';
-
-const API_URL = 'http://localhost:3000';
+import client from "../services/api";
 
 const fetchData = async (search: string): AxiosPromise<CourseData[]> => {
-  const response = axios.get(API_URL + '/list-courses', { params: { search } })
+  const response = client.get('/list-courses', { params: { search } })
   return response;
 }
 
