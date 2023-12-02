@@ -1,5 +1,5 @@
-import { ICreateCourseRepository } from './protocols';
-import { CourseInput } from '../../controller/courses/protocols';
+import { ICreateCourseRepository } from './interfaces';
+import { CourseInput } from '../../controller/courses/interfaces';
 import { Course } from '../../model/course';
 import db from '../../db';
 

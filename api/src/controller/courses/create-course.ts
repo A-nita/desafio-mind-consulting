@@ -1,7 +1,7 @@
 import { Request } from 'express';
-import { ICreateCourseController } from './protocols';
-import { ICreateCourseRepository } from '../../repository/courses/protocols';
-import { CourseInput } from './protocols';
+import { ICreateCourseController } from './interfaces';
+import { ICreateCourseRepository } from '../../repository/courses/interfaces';
+import { CourseInput } from './interfaces';
 
 export class CreateCourseController implements ICreateCourseController {
   constructor(private readonly createCourseRepository : ICreateCourseRepository) {}

@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { HttpResponse } from '../protocols';
+import { HttpResponse } from '../interfaces';
 
 export interface ILoginController {
   handle(req: Request): Promise<HttpResponse<string>>;

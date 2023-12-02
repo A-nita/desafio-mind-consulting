@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { HttpResponse } from '../protocols';
+import { HttpResponse } from '../interfaces';
 import { User } from '../../model/user';
 
 export interface UserInput {

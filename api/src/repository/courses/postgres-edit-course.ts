@@ -1,4 +1,4 @@
-import { IEditCourseRepository } from './protocols';
+import { IEditCourseRepository } from './interfaces';
 import { Course } from '../../model/course';
 import db from '../../db';
 

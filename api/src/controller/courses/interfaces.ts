@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { HttpResponse } from '../protocols';
+import { HttpResponse } from '../interfaces';
 import { Course } from '../../model/course';
 import { Category } from '../../model/category';
 

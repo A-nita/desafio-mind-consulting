@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import { IEditCourseController as IEditCourseController } from './protocols';
-import { IEditCourseRepository as IEditCourseRepository } from '../../repository/courses/protocols';
+import { IEditCourseController as IEditCourseController } from './interfaces';
+import { IEditCourseRepository as IEditCourseRepository } from '../../repository/courses/interfaces';
 import { Course } from '../../model/course';
 
 export class EditCourseController implements IEditCourseController {

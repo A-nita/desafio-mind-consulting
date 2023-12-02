@@ -1,4 +1,4 @@
-import { CourseInput } from '../../controller/courses/protocols';
+import { CourseInput } from '../../controller/courses/interfaces';
 import { Course } from '../../model/course';
 import { Category } from '../../model/category';
 

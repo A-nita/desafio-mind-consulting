@@ -1,4 +1,4 @@
-import { IListCoursesRepository } from './protocols';
+import { IListCoursesRepository } from './interfaces';
 import { Course } from '../../model/course';
 import db from '../../db';
 

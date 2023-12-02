@@ -1,5 +1,5 @@
-import { IListCategoriesController } from './protocols';
-import { IListCategoriesRepository } from '../../repository/courses/protocols';
+import { IListCategoriesController } from './interfaces';
+import { IListCategoriesRepository } from '../../repository/courses/interfaces';
 
 export class ListCategoriesController implements IListCategoriesController {
   constructor(private readonly getCategoriesRepository : IListCategoriesRepository) {}

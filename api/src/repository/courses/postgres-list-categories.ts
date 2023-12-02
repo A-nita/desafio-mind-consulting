@@ -1,4 +1,4 @@
-import { IListCategoriesRepository } from './protocols';
+import { IListCategoriesRepository } from './interfaces';
 import { Category } from '../../model/category';
 import db from '../../db';
 
