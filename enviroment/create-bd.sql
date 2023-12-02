@@ -17,26 +17,25 @@ select * from category;
 
 create table users 
 (id SERIAL PRIMARY KEY, 
-first_name varchar(50) NOT NULL,
-last_name varchar(50) NOT NULL,
+name varchar(50) NOT NULL,
 email varchar(50) NOT NULL,
 password varchar(255) NOT NULL,
 admin boolean NOT NULL DEFAULT false);
 
-INSERT INTO users (first_name, last_name, email, password) VALUES
-('João', 'Santos', 'jsantos@gmail.com', '123456'),
-('Maria', 'Silva', 'msilva@gmail.com', 'abcdef'),
-('Carlos', 'Oliveira', 'coliveira@gmail.com', '789012'),
-('Ana', 'Pereira', 'apereira@gmail.com', 'qwerty'),
-('Rafael', 'Lima', 'rlima@gmail.com', '456789'),
-('Juliana', 'Costa', 'jcosta@gmail.com', 'abc123'),
-('Pedro', 'Martins', 'pmartins@gmail.com', '987654'),
-('Camila', 'Rodrigues', 'crodrigues@gmail.com', 'zxcvbn'),
-('Lucas', 'Ferreira', 'lferreira@gmail.com', '135790'),
-('Mariana', 'Souza', 'msouza@gmail.com', 'poiuyt');
+INSERT INTO users (name, email, password) VALUES
+('João Santos', 'jsantos@gmail.com', '123456'),
+('Maria Silva', 'msilva@gmail.com', 'abcdef'),
+('Carlos Oliveira', 'coliveira@gmail.com', '789012'),
+('Ana Pereira', 'apereira@gmail.com', 'qwerty'),
+('Rafael Lima', 'rlima@gmail.com', '456789'),
+('Juliana Costa', 'jcosta@gmail.com', 'abc123'),
+('Pedro Martins', 'pmartins@gmail.com', '987654'),
+('Camila Rodrigues', 'crodrigues@gmail.com', 'zxcvbn'),
+('Lucas Ferreira', 'lferreira@gmail.com', '135790'),
+('Mariana Souza', 'msouza@gmail.com', 'poiuyt');
 
-INSERT INTO users (first_name, last_name, email, password, admin) VALUES
-('Maria', 'Santos', 'msantos@gmail.com', '123456', true);
+INSERT INTO users (name, email, password, admin) VALUES
+('Maria Santos', 'msantos@gmail.com', '123456', true);
 
 select * from users;
 
@@ -47,7 +46,7 @@ title varchar(50) NOT NULL,
 description varchar(255) NOT NULL,
 category_id int NOT NULL,
 professor_id int NOT NULL,
-image varchar(255) NOT NULL,
+image BYTEA NOT NULL,
 active boolean NOT NULL DEFAULT true,
 FOREIGN KEY (category_id) REFERENCES category(id),
 FOREIGN KEY (professor_id) REFERENCES users(id));

@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import bcrypt from 'bcrypt';
-import { ILoginController, ILoginInput } from './protocols';
-import { IFindUserRepository } from '../../repository/users/protocols';
+import { ILoginController, ILoginInput } from './interfaces';
+import { IFindUserRepository } from '../../repository/users/interfaces';
 import { encryptJwt } from '../../utils/crypto';
 
 export class LoginController implements ILoginController {

@@ -7,7 +7,7 @@ export class PostgresListCoursesRepository implements IListCoursesRepository {
     const res = await db.query(
       `
       SELECT
-        courses.id,courses.title,users.first_name,users.last_name,category.title
+        courses.id,courses.title,users.name,category.title
       AS
         category,courses.description,courses.image,courses.active
       FROM courses

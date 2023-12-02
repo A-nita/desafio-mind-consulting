@@ -10,7 +10,3 @@ export interface ILoginInput {
   password: string;
 }
 
-export interface IUserInput {
-  email: string;
-  password: string;
-}
