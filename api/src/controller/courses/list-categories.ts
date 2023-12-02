@@ -13,7 +13,7 @@ export class ListCategoriesController implements IListCategoriesController {
       };
     } catch (error) {
       return {
-        statusCode: 500,
+        statusCode: 202,
         body: 'Something went wrong',
       };
     }

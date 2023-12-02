@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 
 import { config } from 'dotenv';
@@ -26,64 +26,64 @@ const port = process.env.PORT || 8000;
 
 // ROTAS
 // Courses
-app.get('/list-courses', async (req: express.Request, res: express.Response) => {
+app.get('/list-courses', async (req: Request, res: Response) => {
   const listCoursesRepository = new PostgresListCoursesRepository();
 
   const getCoursesController = new ListCoursesController(listCoursesRepository);
 
   const { body, statusCode } = await getCoursesController.handle(req);
 
-  res.send(body).status(statusCode);
+  res.status(statusCode).send(body);
 });
 
-app.post('/create-course', async (req: express.Request, res: express.Response) => {
+app.post('/create-course', async (req: Request, res: Response) => {
   const createCourseRepository = new PostgresCreateCourseRepository();
 
   const createCourseController = new CreateCourseController(createCourseRepository);
 
   const { body, statusCode } = await createCourseController.handle(req);
 
-  res.send(body).status(statusCode);
+  res.status(statusCode).send(body);
 });
 
-app.post('/edit-course', async (req: express.Request, res: express.Response) => {
+app.post('/edit-course', async (req: Request, res: Response) => {
   const editCourseRepository = new PostgresEditCourseRepository();
 
   const editCourseController = new EditCourseController(editCourseRepository);
 
   const { body, statusCode } = await editCourseController.handle(req);
 
-  res.send(body).status(statusCode);
+  res.status(statusCode).send(body);
 });
 
-app.get('/list-categories', async (req: express.Request, res: express.Response) => {
+app.get('/list-categories', async (req: Request, res: Response) => {
   const listCategoriesRepository = new PostgresListCategoriesRepository();
 
   const getCategoriesController = new ListCategoriesController(listCategoriesRepository);
 
   const { body, statusCode } = await getCategoriesController.handle();
 
-  res.send(body).status(statusCode);
+  res.status(statusCode).send(body);
 });
 
-app.get('/find-user', async (req: express.Request, res: express.Response) => {
+app.get('/find-user', async (req: Request, res: Response) => {
   const findUserRepository = new PostgresFindUserRepository();
 
   const findUserController = new FindUserController(findUserRepository);
 
   const { body, statusCode } = await findUserController.handle(req);
 
-  res.send(body).status(statusCode);
+  res.status(statusCode).send(body);
 });
 
-app.post('/login', async (req: express.Request, res: express.Response) => {
+app.post('/login', async (req: Request, res: Response) => {
   const findUserRepository = new PostgresFindUserRepository();
 
   const loginController = new LoginController(findUserRepository);
 
   const { body, statusCode } = await loginController.handle(req);
 
-  res.send(body).status(statusCode);
+  res.status(statusCode).send(body);
 });
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

@@ -18,7 +18,7 @@ export class ListCoursesController implements IListCoursesController {
     } catch (error) {
       console.log(error);
       return {
-        statusCode: 500,
+        statusCode: 202,
         body: 'Something went wrong',
       };
     }

@@ -19,7 +19,7 @@ export class FindUserController implements IFindUserController {
     } catch (error) {
       console.log(error);
       return {
-        statusCode: 500,
+        statusCode: 202,
         body: 'Somethings went wrong'
       };
     }
