@@ -14,11 +14,20 @@ export function Card({ title, professor, category, description, image, active }:
     <div className="card-curso">
       <img className="image-course" src={image} alt="Imagem relativa ao curso" />
       <h2 className="title-course">{title}</h2>
-      <h3 className="professor-course">{professor}</h3>
-      <h3 className="category-course">{category}</h3>
       <p className="description-course">{description}</p>
-      <button className="btn-disable" disabled={!active}>{ active ? 'Desativar' : 'Ativar' }</button>
-      <button className="btn-edit" disabled={!active}>Editar</button>
+
+     <div className="bottom-course">
+      <div className="infos-course">
+        <h3 className="professor-course">{professor}</h3>
+        <h3 className="category-course">{category}</h3>
+      </div>
+
+      <div className="btns-course">
+        <button className="btn btn-disable" disabled={!active}>{ active ? 'Desativar' : 'Ativar' }</button>
+        <button className="btn btn-edit" disabled={!active}>Editar</button>
+      </div>
+
+     </div>
     </div>
   )
 }
