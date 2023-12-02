@@ -1,18 +1,24 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { useCourseData } from './hooks/use-course-data'
+import { Card } from './components/card/card-course';
+import { Search } from './components/search/search-course';
 import './App.css'
-import { Card } from './components/card/card-curso';
-import { CourseData } from './interface/CourseData';
 
 function App() {
-  const { data } = useCourseData();
+  const [input, setSearch] = useState('');
+  const { data } = useCourseData(input);
 
-  return (
-    
+  const handleSearch = (input: string) => {
+    setSearch(input);
+  }
+
+  return (    
     <div className='container'>
       <h1>Cursos</h1>
+      <Search onSearch={handleSearch} />
       <div className="card-courses-grid">
         {data?.map(courseData => <Card
+        key={courseData.id}
         title={courseData.title}
         professor={courseData.professor}
         category={courseData.category}
@@ -21,9 +27,7 @@ function App() {
         active={courseData.active}
         />)}
       </div>
-
     </div>
-    
   )
 }
 
