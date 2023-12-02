@@ -12,6 +12,7 @@ export default function Dashboard() {
   }
 
   return (    
+
     <div className='container'>
       <h1>Cursos</h1>
       <Search onSearch={handleSearch} />
@@ -28,5 +29,7 @@ export default function Dashboard() {
         {data?.length === 0 && <div  className="notFound">Nenhum curso encontrado</div>}
       </div>
     </div>
+ 
+
   )
 }
