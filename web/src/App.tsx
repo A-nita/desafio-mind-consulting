@@ -26,6 +26,7 @@ function App() {
         image={courseData.image}
         active={courseData.active}
         />)}
+        {data?.length === 0 && <div  className="notFound">Nenhum curso encontrado</div>}
       </div>
     </div>
   )
