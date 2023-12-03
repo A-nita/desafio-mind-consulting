@@ -34,7 +34,7 @@ npm i
 npm run dev
 ```
 
-Com isso a aplicação estará sendo executada na porta xxxx e a api na porta 3000.
+Com isso a aplicação estará sendo executada na porta 3003 e a api na porta 3000.
 
 # Tecnologias utilizadas
 
@@ -116,12 +116,11 @@ Na API foi utilizado o Node.js com typescript, com as configurações desse no a
 
 O arquivo index no diretório /src desempenha o papel de ponto inicial da aplicação, iniciando o servidor e aplicnado os midare do express. Nele também são definidas as rotas quais estão descitas a seguir:
 
-- get(/list-courses)
-- post(/create-course)
-- post(/edit-course)
-
--get(/list-categories)
--post(/login)
+- GET(/list-courses)
+- POST(/create-course)
+- POST(/edit-course)
+- GET(/list-categories)
+- POST(/login)
 
 Nos controllers foram tratados os dados e possíveis erros e tambés realizada a conexão com os repositories os quais se conectam com o banco de dados.
 Foram criadas interfaces para todos os repositories, de forma que em caso de mudança do banco a refatoração seria feita de forma fácil. 
@@ -129,7 +128,7 @@ Ainda há uma pasta de model com as interfaces de cada entidade do banco de dado
 
 A conexão com o banco de dados é realizada repositórios db e chamada dentro dos repositories.
 
-No diretório utils pe feita a configuração da autenticação dos usuários.
+No diretório utils é feita a configuração da autenticação dos usuários.
 
 * A pasta temp tem como intuito guardar as imagens para salvar no banco de dados.
 
@@ -153,4 +152,9 @@ Foram criadas 3 página:
 - login
 - página padrão de erro
 
+## Limitações
+
+* A página de castro de cursos e dashboard de administrador, foram centralizadas na mesma visualização
+
+* A função de desativar e ativar o curso não foi implementada no front-end
 
