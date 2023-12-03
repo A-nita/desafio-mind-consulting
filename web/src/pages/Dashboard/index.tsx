@@ -11,13 +11,13 @@ export default function Dashboard() {
   const [isModalOpen, setIsModalOpen]= useState(false);
   const [selectedCourse, setSelectedCourse] = useState<ICourseInput|null>(null);
   const [categories, setCategories] = useState<Array<{ id: number, title: string }>>([]);
+  const { data } = useCourseData(input);
 
   // Carrega as categorias ao carregar a página
   useEffect(() => {
     listCategoriesRequest();
   }, []);
 
-  const { data } = useCourseData(input);
 
   const handleSearch = (input: string) => {
     setSearch(input);

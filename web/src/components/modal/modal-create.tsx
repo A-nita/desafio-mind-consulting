@@ -37,7 +37,8 @@ export function ModalCreate({ course, close, categories }: InputModal) {
   const [title, setTitle] = useState(course?.title || '');
   const [description, setDescription] = useState(course?.description || '');
   const [category, setCategory] = useState<string|number>(course?.category ? getCategoryKey(course.category) : 1);
-  const [image, setImage] = useState(course?.image || new File([], ''));
+  const [image, setImage] = useState<File|undefined>(undefined);
+  const [error, setError] = useState('');
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +48,17 @@ export function ModalCreate({ course, close, categories }: InputModal) {
       if (course) {
         formData.append('id', String(course.id));
       }
-  
+      
+      if (!title || !description || !category) {
+        setError('Preencha todos os campos');
+        return;
+      }
+
+      if (!image) {
+        setError('Selecione uma imagem');
+        return;
+      }
+
       formData.append('title', title);
       formData.append('description', description);
       formData.append('category', category.toString());
@@ -58,6 +69,7 @@ export function ModalCreate({ course, close, categories }: InputModal) {
   
       if (response.status !== 200) {
         console.log('Erro ao salvar curso:', response.data);
+        setError(response.data);
       }
   
       setTitle('');
@@ -66,8 +78,11 @@ export function ModalCreate({ course, close, categories }: InputModal) {
       setImage(new File([], ''));
   
       close();
+
+      window.location.reload();
     } catch (error) {
       console.log(error);
+      setError('Erro ao salvar curso');
     }
   }
 
@@ -99,6 +114,10 @@ export function ModalCreate({ course, close, categories }: InputModal) {
             <label htmlFor="Imagem">Imagem</label>
             <input type="file" id="Imagem" onChange={handleImage} />
           </div>
+
+          {
+            error && <p className="error">{error}</p>
+          }
 
           <button onClick={close} className="btn-close">Fechar</button>
           <button onClick={submit} className="btn-secondary">Salvar</button>

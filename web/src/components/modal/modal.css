@@ -97,6 +97,10 @@ select {
   color: #fff;
 }
 
+.btn-close {
+  margin-top: 20px !important;
+}
+
 .modal-overlay .modal-body .btn-close:hover {
   background-color: #660000 !important;
   transform: scale(1);
@@ -113,4 +117,10 @@ select {
 .btn-secondary:hover {
   background-color: rgba(0,0,0,0.98) !important;
   transform: scale(1);
+}
+
+.error {
+  color: #660000;
+  font-size: 14px;
+  margin: 5px auto;
 }

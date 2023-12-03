@@ -32,6 +32,7 @@ export default function Login() {
       localStorage.setItem('token', response.data);
 
       navigate('/dashboard')
+      window.location.reload();
     } catch (error) {
       console.log(error);
       setError(true);
