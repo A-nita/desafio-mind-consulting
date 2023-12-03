@@ -89,7 +89,7 @@ select {
   font-size: 18px;
 }
 
-.modal-overlay .modal-body .btn-secondary {
+.modal-overlay .modal-body .btn-close {
   position: initial;
   width: 100%;
   margin-top: 32px;
@@ -97,7 +97,20 @@ select {
   color: #fff;
 }
 
-.modal-overlay .modal-body .btn-secondary:hover {
+.modal-overlay .modal-body .btn-close:hover {
   background-color: #660000 !important;
+  transform: scale(1);
+}
+
+.btn-secondary {
+  position: initial;
+  width: 100%;
+  margin-top: 32px;
+  background-color: rgba(0,0,0,0.9);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0,0,0,0.98) !important;
   transform: scale(1);
 }
