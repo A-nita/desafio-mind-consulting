@@ -10,8 +10,11 @@ export class CreateCourseController implements ICreateCourseController {
 
   async handle(req: Request) {
     try {
-      const { title, description, category, professor } = req.body;
+      const { title, description, category } = req.body;
       const image = req.files?.image as UploadedFile;
+
+      const user = req.user as { id: number };
+      const professor = user.id.toString();
 
       if (!image || !title || !description || !category || !professor) {
         return {
