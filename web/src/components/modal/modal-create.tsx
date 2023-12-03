@@ -69,8 +69,6 @@ export function ModalCreate({ course, close }: InputModal) {
       <div className="modal-body">
         <h2>Cadastrar um novo curso</h2>
         <form action="form-modal">
-          {/* title, descrição, categoria, imagem */}
-
           <Input label="Título" value={title} type="text" updateValue={setTitle} />
 
           <Input label="Descrição" value={description} type="text-area" updateValue={setDescription} />

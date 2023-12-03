@@ -19,9 +19,8 @@ export class PostgresListCoursesRepository implements IListCoursesRepository {
       `, search ? ['%' + search + '%'] : []);
 
     for (let i = 0; i < res.rows.length; i++) {
-      res.rows[i].professor = res.rows[i].first_name + ' ' + res.rows[i].last_name;
-      delete res.rows[i].first_name;
-      delete res.rows[i].last_name;
+      res.rows[i].professor = res.rows[i].name;
+      delete res.rows[i].name;
     }
 
     return res.rows;

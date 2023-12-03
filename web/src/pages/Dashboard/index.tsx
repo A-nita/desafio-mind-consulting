@@ -29,6 +29,7 @@ export default function Dashboard() {
     <div className='container'>
       <h1>Cursos</h1>
       <Search onSearch={handleSearch} />
+      <button onClick={() => handleModal(null)}>Criar curso</button>
       <div className="card-courses-grid">
         {data?.map(courseData => <Card
           key={courseData.id}
@@ -38,13 +39,10 @@ export default function Dashboard() {
           description={courseData.description}
           image={courseData.image}
           active={courseData.active}
-        />)}
+          />)}
         {data?.length === 0 && <div  className="notFound">Nenhum curso encontrado</div>}
       </div>
       {isModalOpen && <ModalCreate course={selectedCourse} close={handleCloseModal} />}
-      <button onClick={() => handleModal(null)}>Criar curso</button>
     </div>
- 
-
   )
 }
