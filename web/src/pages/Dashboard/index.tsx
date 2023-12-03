@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCourseData } from '../../hooks/use-course-data'
 import { Card } from '../../components/card/card-course';
 import { Search } from '../../components/search/search-course';
+import { ModalCreate } from '../../components/modal/modal-create';
 
 export default function Dashboard() {
   const [input, setSearch] = useState('');
@@ -9,6 +10,12 @@ export default function Dashboard() {
 
   const handleSearch = (input: string) => {
     setSearch(input);
+  }
+  
+  const [isModalOpen, setIsModalOpen]= useState(true);
+
+  const handleModal = () => {
+    setIsModalOpen(!isModalOpen);
   }
 
   return (    
@@ -28,6 +35,8 @@ export default function Dashboard() {
         />)}
         {data?.length === 0 && <div  className="notFound">Nenhum curso encontrado</div>}
       </div>
+      {isModalOpen && <ModalCreate/>}
+      <button onClick={() => handleModal}>Criar curso</button>
     </div>
  
 
