@@ -7,9 +7,10 @@ interface CardProps {
   description: string;
   image: { type: string, data: ArrayBuffer };
   active: boolean;
+  onClickEdit: () => void;
 }
 
-export function Card({ title, professor, category, description, image, active }: CardProps) {
+export function Card({ title, professor, category, description, image, active, onClickEdit }: CardProps) {
   const handleBlobImg = (img: { type: string, data: ArrayBuffer }): string => {
     const blob = new Blob([new Uint8Array(img.data)], { type: img.type });
     const urlCreator = window.URL || window.webkitURL;
@@ -31,7 +32,7 @@ export function Card({ title, professor, category, description, image, active }:
 
       <div className="btns-course">
         <button className="btn btn-disable" disabled={!active}>{ active ? 'Desativar' : 'Ativar' }</button>
-        <button className="btn btn-edit" disabled={!active}>Editar</button>
+        <button className="btn btn-edit" disabled={!active} onClick={onClickEdit}>Editar</button>
       </div>
 
      </div>

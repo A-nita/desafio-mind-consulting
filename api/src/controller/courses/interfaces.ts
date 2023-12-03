@@ -11,6 +11,15 @@ export interface ICourseInput {
   image: Buffer;
 }
 
+export interface IEditCourseInput {
+  id: string;
+  title: string;
+  professor: string;
+  category: string;
+  description: string;
+  image: Buffer;
+}
+
 export interface ICreateCourseController {
   handle(req: Request): Promise<HttpResponse<Course>>;
 }

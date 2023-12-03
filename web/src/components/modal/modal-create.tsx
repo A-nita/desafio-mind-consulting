@@ -3,17 +3,18 @@ import { useState } from "react";
 import { ICourseInput } from "../../interface/CourseData";
 import client from "../../services/api";
 
+interface InputModal {
+  course: ICourseInput | null;
+  close: () => void;
+  categories: Array<{ id: number, title: string }>;
+}
+
 interface InputProps {
   label: string;
   value: string | number,
   type: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   updateValue: any;
-}
-
-interface InputModal {
-  course: ICourseInput | null;
-  close: () => void;
 }
 
 const Input = ({ label, value, type , updateValue }: InputProps) => {
@@ -25,33 +26,45 @@ const Input = ({ label, value, type , updateValue }: InputProps) => {
   );
 }
 
-export function ModalCreate({ course, close }: InputModal) {
+
+export function ModalCreate({ course, close, categories }: InputModal) {
+  const getCategoryKey = (category: string): number => {
+    const categoryItem = categories.find(categoryItem => categoryItem.title === category);
+
+    return categoryItem?.id || 1;
+  }
+
   const [title, setTitle] = useState(course?.title || '');
   const [description, setDescription] = useState(course?.description || '');
-  const [category, setCategory] = useState(course?.category || '');
+  const [category, setCategory] = useState<string|number>(course?.category ? getCategoryKey(course.category) : 1);
   const [image, setImage] = useState(course?.image || new File([], ''));
 
   const submit = async (e: React.FormEvent) => {
-    try {
-      e.preventDefault();
-    
+    e.preventDefault();
+    try {   
       const formData = new FormData();
+
+      if (course) {
+        formData.append('id', String(course.id));
+      }
+  
       formData.append('title', title);
       formData.append('description', description);
-      formData.append('category', category);
+      formData.append('category', category.toString());
       formData.append('image', image);
   
-      const response = await client.post('/create-course', formData);
-
+      const url = course ? `/edit-course` : '/create-course';
+      const response = await client.post(url, formData);
+  
       if (response.status !== 200) {
-        console.log('Erro ao cadastrar curso:', response.data);
+        console.log('Erro ao salvar curso:', response.data);
       }
-
+  
       setTitle('');
       setDescription('');
       setCategory('');
       setImage(new File([], ''));
-
+  
       close();
     } catch (error) {
       console.log(error);
@@ -76,9 +89,9 @@ export function ModalCreate({ course, close }: InputModal) {
           <div className="input-block-select">
             <label htmlFor="category">Categoria</label>
             <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
-              <option value='1'>Frontend</option>
-              <option value='2'>Backend</option>
-              <option value='3'>Mobile</option>
+              {categories.map(categoryItem => (
+                <option key={categoryItem.id} value={categoryItem.id}>{categoryItem.title}</option>
+              ))}
             </select>
           </div>
 
